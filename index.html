@@ -1,7 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body>
-    <p>hello world!</p>
+  <head>
+    <style type="text/css">
+      .container {
+        background: url("static/img/bg.jpg") repeat;
+      }
+    </style>
+    <link rel="stylesheet" href="static/css/planet.css">
+    <script src="static/js/planet.js"></script>
+  </head>
+  <body class="container">
+    <div class="solar-system">
+      <div id="solar">
+        <!-- 绘制太阳 -->
+        <div class="planet">
+          <div class="texture"></div>
+        </div>
+      </div>
+      <div id="earth">
+        <!-- 绘制地球 -->
+        <div class="planet">
+          <div class="texture"></div>
+        </div>
+        <!-- 绘制地球公转轨道 -->
+        <div class="orbit"></div>
+      </div>
+      <div id="moon">
+        <!-- 绘制月球 -->
+        <div class="planet">
+          <div class="texture"></div>
+        </div>
+        <!-- 绘制月球公转轨道 -->
+        <div class="orbit"></div>
+    </div>
   </body>
 </html>
