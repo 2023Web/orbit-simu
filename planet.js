@@ -41,7 +41,7 @@ var planet_coef = {
   },
   earth: {
     radius: 0.000042587, // AU   6371 km = 0.000042587 AU
-    speed: 0.0041781, // degree/s 
+    speed: 0.0041781, // degree/s
     angle: 0,
     clockwise: 1, // 北极上空俯视呈逆时针方向旋转
     orbit_radius: 1, // AU
@@ -50,18 +50,18 @@ var planet_coef = {
     orbit_clockwise: 1,
   },
   lunar: {
-    radius: 0.000011264, // AU   1737.1 km = 0.000011611 AU
+    radius: 0.000011611, // AU   1737.1 km = 0.000011611 AU
     speed: 0.0001525, // degree/s   360 degree / 2360591 s = 0.00015250418
     angle: 0,
     clockwise: 1, // 北极上空俯视呈逆时针方向旋转
-    orbit_radius: 0.00257, // AU    384403 km = 0.002262084336 AU
+    orbit_radius: 0.00226, // AU    384403 km = 0.002262084336 AU
     orbit_speed: 13.177159, // degree/day  360 degree / 27.32 day = 13.177159
     orbit_angle: 0,
     orbit_clockwise: 1,
   },
 };
 
-var time_coef = 10 / 86400; // 1s = 10day   1  /  864000
+var time_coef = 1 / 864000; // 1s = 10day   1  /  864000
 
 module.exports = {
   solar: new Planet(
