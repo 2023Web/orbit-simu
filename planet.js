@@ -27,8 +27,6 @@ class Planet {
   }
 }
 
-// TODO: 需要添加判断日食月食的代码
-
 // FIXME: 部分参数可能有误，请检查
 var planet_coef = {
   solar: {
