@@ -1166,7 +1166,7 @@
       "containerId": null,
       "originalText": "日食",
       "lineHeight": 1.25,
-      "baseline": 9
+      "baseline": 10
     },
     {
       "type": "rectangle",
@@ -2143,7 +2143,7 @@
       "containerId": null,
       "originalText": "月食",
       "lineHeight": 1.25,
-      "baseline": 9
+      "baseline": 10
     },
     {
       "type": "rectangle",
@@ -2215,7 +2215,7 @@
       "containerId": "HQ_Hzd-XWcsTGfAiX8bSq",
       "originalText": "俯视图",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
@@ -2345,7 +2345,7 @@
       "containerId": "r3xu47YGCABn_GpLdlcma",
       "originalText": "侧视图",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "ellipse",
@@ -2414,8 +2414,8 @@
     },
     {
       "type": "text",
-      "version": 437,
-      "versionNonce": 2029478430,
+      "version": 438,
+      "versionNonce": 394072518,
       "isDeleted": false,
       "id": "KqA_7cr60TaJ-RAqjLbWs",
       "fillStyle": "hachure",
@@ -2436,7 +2436,7 @@
       ],
       "roundness": null,
       "boundElements": [],
-      "updated": 1690376997262,
+      "updated": 1690381812164,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -2447,7 +2447,7 @@
       "containerId": "5yi7-9jTXowQLGr1ZXvFm",
       "originalText": " 3D视图",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "ellipse",
@@ -2557,7 +2557,7 @@
       "containerId": null,
       "originalText": "需要显示轨道",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "arrow",
@@ -2646,7 +2646,7 @@
       "containerId": null,
       "originalText": "星球自转贴图",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2793,8 +2793,8 @@
     },
     {
       "type": "text",
-      "version": 97,
-      "versionNonce": 1044240066,
+      "version": 98,
+      "versionNonce": 2011846042,
       "isDeleted": false,
       "id": "8TPLil7f18GLS0y6yUC17",
       "fillStyle": "hachure",
@@ -2813,7 +2813,7 @@
       "groupIds": [],
       "roundness": null,
       "boundElements": [],
-      "updated": 1690376997263,
+      "updated": 1690381812166,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -2824,7 +2824,7 @@
       "containerId": null,
       "originalText": "卫星图/地图",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "text",
@@ -2859,7 +2859,7 @@
       "containerId": null,
       "originalText": "地球换肤",
       "lineHeight": 1.25,
-      "baseline": 17
+      "baseline": 18
     },
     {
       "type": "rectangle",
