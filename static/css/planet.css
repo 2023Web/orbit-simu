@@ -94,3 +94,36 @@ img{
   margin: 0 auto;
 
 }
+
+.eclipse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin: auto;
+}
+
+.eclipse-after{
+  animation: eclipse 5s linear infinite;
+}
+
+.eclipse-before{
+  animation: shadow 5s linear infinite;
+}
+
+@keyframes eclipse{
+  0%{
+      left: 300px;
+  }
+  45%,60%{
+      left: 0;
+      background:#282c34;
+  }
+  100%{
+      left:-300px;
+  }
+}

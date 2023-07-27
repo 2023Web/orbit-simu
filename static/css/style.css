@@ -1,7 +1,7 @@
 :root {
   --boundary-ratio: 70%;
   --topbot-ratio: 40%;
-  --eclipse-color: rgba(0, 0, 0, 0.5);
+  --eclipse-rate: 50%;
 }
 
 /* body 整体图片 */
