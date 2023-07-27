@@ -11,36 +11,36 @@
 
 <body class="container">
   <div class="con_box_1">
-    <div class="solar-system">
-
+    <div class="solar-system view_3d">
       <!-- 绘制地球公转轨道 -->
-      <div class="earth_orbit"></div>
-
+      <div class="earth_orbit">
+        <div class="earth">
+          <!-- 绘制地球 -->
+          <div class="imgList">
+            <img src="static/img/earth_2K.jpg" name="earth_texture" />
+            <img src="static/img/earth_2K.jpg" name="earth_texture" />
+          </div>
+          <div id="shadows"></div><!--阴影-->
+        </div>
+        <!-- 绘制月球公转轨道 -->
+        <div class="lunar_orbit">
+          <div class="lunar">
+            <!-- 绘制月球 -->
+            <div class="imgList">
+              <img src="static/img/lunar.jpg" name="lunar_texture" />
+              <img src="static/img/lunar.jpg" name="lunar_texture" />
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="solar">
         <!-- 绘制太阳 -->
         <div class="imgList">
           <img src="static/img/sun.jpg" />
         </div>
       </div>
-      <div class="earth">
-        <!-- 绘制地球 -->
-        <div class="imgList">
-          <img src="static/img/earth_2K.jpg" name="earth_texture" />
-          <img src="static/img/earth_2K.jpg" name="earth_texture" />
-        </div> <!--实现自转-->
-        <div id="shadows"></div><!--阴影-->
 
-      </div>
-
-      <!-- 绘制月球公转轨道 -->
-      <div class="lunar_orbit"></div>
-      <div id="lunar">
-        <!-- 绘制月球 -->
-        <div class="planet">
-          <div class="texture"></div>
-        </div>
-
-      </div>
+      
     </div>
     <div class="con_box_2">
       <!-- 三个互斥的选项：俯视图、侧视图、3D视图 -->

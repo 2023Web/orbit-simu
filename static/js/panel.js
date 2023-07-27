@@ -15,10 +15,12 @@ function view_changed() {
   console.log('view_changed: ' + view);
   if (view == 'top') {
     // TODO: 俯视图
+    $(".solar-system").toggleClass("view_3d view_2d");
   } else if (view == 'side') {
     // TODO: 侧视图
   } else if (view == '3d') {
     // TODO: 3d视图
+    $(".solar-system").toggleClass("view_3d view_2d");
   }
 }
 
