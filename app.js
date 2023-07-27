@@ -89,7 +89,6 @@ app.get('/api/eclipse/:id', function(req, res, next) {
       eclipse_rate = 0;
     }
   }
-
   res.json_send({
     eclipse_rate: eclipse_rate,
   });
