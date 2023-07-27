@@ -162,12 +162,12 @@ img{
 
 .eclipse {
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100px;
-  height: 100px;
+  width: 99px;
+  height: 99px;
   border-radius: 100%;
   margin: auto;
 }
@@ -180,13 +180,6 @@ img{
   animation: shadow var(--animation-duration) linear infinite;
 }
 
-
-
-@keyframes shadow {
-  50% {
-    box-shadow: 0 0 10px 5px #fff;
-  }
-}
 
 @keyframes eclipse {
   0% {
