@@ -118,7 +118,8 @@ img{
   margin-top: calc(-0.5 * var(--lunar-orbit-radius));
   margin-left: calc(-0.5 * var(--lunar-orbit-radius));
 
-  border: 5px solid rgb(195, 0, 255);
+  border: 3px solid grey;
+  border-style: dotted;
   border-radius: 50%;
   width: var(--lunar-orbit-radius);
   height: var(--lunar-orbit-radius);
@@ -134,7 +135,8 @@ img{
   top: 50%;
   margin-top: calc(-0.5 * var(--earth-orbit-radius));
   margin-left: calc(-0.5 * var(--earth-orbit-radius));
-  border: 10px solid red;
+  border: 3px solid grey;
+  border-style: dotted;
   border-radius: 50%;
   width: var(--earth-orbit-radius);
   height: var(--earth-orbit-radius);
@@ -183,7 +185,7 @@ img{
   transform: rotateX(calc(-1 * var(--view-3d-rotate)));
 }
 .view_3d .bet_earth {
-  transform: rotateX(calc(-1 * var(--view-3d-rotate)));
+  /* transform: rotateX(calc(-1 * var(--view-3d-rotate))); */
 }
 
 .view_side {
