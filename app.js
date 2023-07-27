@@ -3,6 +3,10 @@ var planet_hdl = require('./planet.js')
 const path = require('path');
 var app = express();
 
+const eclipse_rate = 0.7; 
+const animationDuration = `${eclipse_rate * 5}s`; 
+document.documentElement.style.setProperty('--animation-duration', animationDuration);
+
 app.use('/static',express.static(path.join(__dirname, 'static')));
 app.get('/', function (req, res) {
   res.sendFile(__dirname + "/" + "index.html");

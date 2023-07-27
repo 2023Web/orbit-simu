@@ -1,7 +1,7 @@
 :root {
   --boundary-ratio: 70%;
   --topbot-ratio: 40%;
-  --eclipse-rate: 50%;
+  --animation-duration: 5s; /* Default animation duration */
 }
 
 /* body 整体图片 */
