@@ -1,4 +1,4 @@
-#solar{
+.solar {
   top: 200px;
   position: relative;
   margin: 0 auto;
@@ -7,7 +7,7 @@
   border-radius: 50%;
   overflow: hidden;
 }
-#earth{
+.earth {
   width:100px;
   height: 100px;
   margin: 0 auto;
@@ -15,6 +15,14 @@
   position: relative;
   border-radius: 50%;
   transform: rotate(22deg);
+}
+.lunar {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .imgList{
   animation: rolling 18s linear infinite;

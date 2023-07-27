@@ -3,30 +3,26 @@
   <head>
     <link rel="stylesheet" href="static/css/planet.css">
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/jquery_min.js"></script>
+    <script src="static/js/panel.js"></script>
     <script src="static/js/planet.js"></script>
   </head>
   <body class="container">
     <div class="con_box_1">
       <div class="solar-system">
-        <div id="solar">
+        <div class="solar">
           <!-- 绘制太阳 -->
           <div class="imgList">
             <img src="static/img/sun.jpg" />
           </div>
-          <div class="planet">
-            <div class="texture"></div>
-          </div>
         </div>
-        <div id="earth">
+        <div class="earth">
           <!-- 绘制地球 -->
           <div class="imgList">
-            <img src="static/img/earth_2K.jpg" />
-            <img src="static/img/earth_2K.jpg"/ >
+            <img src="static/img/earth_2K.jpg" name="earth_texture" />
+            <img src="static/img/earth_2K.jpg" name="earth_texture"/ >
           </div>    <!--实现自转-->
           <div id="shadows"></div><!--阴影-->
-          <div class="planet">
-            <div class="texture"></div>
-          </div>
           <!-- 绘制地球公转轨道 -->
           <div class="orbit"></div>
         </div>
@@ -44,22 +40,22 @@
       <div class="view_block">
         <p class="info_label">视图选择</p>
         <div class="view">
-          <input type="radio" name="view" id="view_top">
+          <input type="radio" name="view" id="view_top" value="top">
           <label for="view_top">俯视图</label>
-          <input type="radio" name="view" id="view_side">
+          <input type="radio" name="view" id="view_side" value="side">
           <label for="view_side">侧视图</label>
-          <input type="radio" name="view" id="view_3d" checked>
-          <label for="view_3d" class="activate">3D视图</label>
+          <input type="radio" name="view" id="view_3d" value="3d" checked>
+          <label for="view_3d">3D视图</label>
         </div>
       </div>
       <!-- 地球贴图换肤 -->
       <div class="view_block">
         <p class="info_label">地球贴图换肤</p>
         <div class="view">
-          <input type="radio" name="earth_texture" id="earth_texture_1">
+          <input type="radio" name="earth_texture" id="earth_texture_satellite" value="satellite">
           <label for="earth_texture_satellite">卫星图</label>
-          <input type="radio" name="earth_texture" id="earth_texture_2" checked>
-          <label for="earth_texture_geographic" class="activate">地理图</label>
+          <input type="radio" name="earth_texture" id="earth_texture_geographic" value="geographic" checked>
+          <label for="earth_texture_geographic">地理图</label>
         </div>
       </div>
     </div>
@@ -68,12 +64,20 @@
       <div class="pip">
         <!-- TODO: 日食画中画 -->
         <p>日食</p>
-        <img src="static/img/sun.jpg" />
+        <div class="solar" style="top: 0;">
+          <div class="imgList">
+            <img src="static/img/sun.jpg" />
+          </div>
+        </div>
       </div>
       <div class="pip">
         <!-- TODO：月食画中画 -->
         <p>月食</p>
-        <img src="static/img/lunar.jpg" />
+        <div class="lunar" style="top: 0;">
+          <div class="imgList">
+            <img src="static/img/lunar.jpg" />
+          </div>
+        </div>
       </div>
     </div>
   </body>

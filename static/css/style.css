@@ -64,7 +64,8 @@
 .view label:hover {
   background-color: rgb(0,0,0,0.5);
 }
-.activate {
+
+.view input:checked + label {
   background-color: rgb(0,0,0,0.5);
 }
 
