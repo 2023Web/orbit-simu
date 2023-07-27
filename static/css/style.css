@@ -2,6 +2,7 @@
   --boundary-ratio: 70%;
   --topbot-ratio: 40%;
   --animation-duration: 5s; /* Default animation duration */
+  --pip-radius: 100px;
 }
 
 /* body 整体图片 */
@@ -83,4 +84,30 @@
 .pip p {
   text-align: center;
   font-size: 20px;
+}
+
+/* 画中画 */
+.solar_pip {
+  position: absolute;
+  width: var(--pip-radius);
+  height: var(--pip-radius);
+  border-radius: 50%;
+  overflow: hidden;
+  left: 50%;
+  margin-left: calc(-0.5 * var(--pip-radius));
+}
+.lunar_pip {
+  position: absolute;
+  width: var(--pip-radius);
+  height: var(--pip-radius);
+  border-radius: 50%;
+  overflow: hidden;
+  left: 50%;
+  margin-left: calc(-0.5 * var(--pip-radius));
+}
+.solar_pip .imgList{
+  animation: rolling var(--solar-cycle) linear infinite;
+}
+.lunar_pip .imgList{
+  animation: rolling var(--earth-cycle) linear infinite;
 }
