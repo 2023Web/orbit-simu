@@ -17,6 +17,9 @@
   /* 视图旋转角度 */
   --view-3d-rotate: 50deg;
   --view-side-rotate: 90deg;
+
+  
+  --orbit-compress-coef: 0.3;
 }
 
 .earth_orbit_reverse {
@@ -168,18 +171,49 @@ img{
   transform-style: flat;
 }
 .view_side {
-  transform-style: preserve-3d;
-  transform: rotateX(80deg);
+  transform-style: flat;
 }
 .view_3d {
   transform-style: preserve-3d;
   transform: rotateX(var(--view-3d-rotate));
 }
 
-/* 在view_3d情况下，让所有的图像树立起来 */
+/* 在view_3d情况下，让所有的图像立起来 */
 .view_3d .solar {
   transform: rotateX(calc(-1 * var(--view-3d-rotate)));
 }
 .view_3d .bet_earth {
-  transform: rotateX(-50deg);
+  transform: rotateX(calc(-1 * var(--view-3d-rotate)));
+}
+
+.view_side {
+  --earth-orbit-cycle: infty;
+  --lunar-orbit-cycle: infty;
+  animation: side_orbit 0s linear forwards;
+}
+.view_side .earth {
+  animation: side_orbit 0s linear forwards;
+}
+.view_side .lunar {
+  animation: side_orbit 0s linear forwards;
+}
+.view_side .solar {
+  animation: side_orbit 0s linear forwards;
+}
+@keyframes side_orbit {
+  /* 旋转90° */
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+.view_side .earth_orbit {
+  margin-left: calc(calc(-1.0 * var(--orbit-compress-coef)) * var(--earth-orbit-radius));
+  width: calc(calc(2.0*var(--orbit-compress-coef)) * var(--earth-orbit-radius));
+}
+.view_side .lunar_orbit {
+  margin-left: calc(calc(-1.0 * var(--orbit-compress-coef)) * var(--lunar-orbit-radius));
+  width: calc(calc(2.0*var(--orbit-compress-coef)) * var(--lunar-orbit-radius));
 }
