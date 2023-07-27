@@ -1,0 +1,36 @@
+
+/* 日食月食处理 */
+
+.eclipse {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 99px;
+  height: 99px;
+  border-radius: 100%;
+  margin: auto;
+}
+
+.eclipse-after {
+  animation: eclipse var(--animation-duration) linear infinite;
+}
+
+.eclipse-before {
+  animation: shadow var(--animation-duration) linear infinite;
+}
+
+
+@keyframes eclipse {
+  0% {
+    left: 300px;
+  }
+  45%, 60% {
+    left: 0;
+    background: #000;
+  }
+  100% {
+    left: -300px;
+  }
+}
