@@ -74,9 +74,13 @@
 .pip {
   position: relative;
   width: 200px;
-  height: 200px;
+  height: 180px;
   background-color: rgb(0,0,0,0.5);
   color: white;
   margin: auto;
   margin-top: 10px;
+}
+.pip p {
+  text-align: center;
+  font-size: 20px;
 }

@@ -7,6 +7,10 @@ app.use('/static',express.static(path.join(__dirname, 'static')));
 app.get('/', function (req, res) {
   res.sendFile(__dirname + "/" + "index.html");
 });
+app.get('/index.html', function (req, res) {
+  res.sendFile(__dirname + "/" + "index.html");
+});
+
 
 // packjson: 将返回的数据包装成json格式
 function packjson(req, res, next) {
