@@ -115,15 +115,27 @@ img{
   animation: shadow 5s linear infinite;
 }
 
+
+
+@keyframes shadow{
+  50%{
+      box-shadow: 0 0 10px 5px #fff;
+  }
+}
+
+
+
 @keyframes eclipse{
   0%{
       left: 300px;
   }
   45%,60%{
       left: 0;
-      background:#282c34;
+      background:#000;
   }
   100%{
       left:-300px;
   }
 }
+
+
