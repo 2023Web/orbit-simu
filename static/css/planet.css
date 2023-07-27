@@ -1,19 +1,26 @@
 :root {
+  /* 公转半径 */
   --lunar-orbit-radius: 200px;
   --earth-orbit-radius: 300px;
-
-  --earth-radius: 100px;
+  /* 星体半径 */
+  --earth-radius: 80px;
   --lunar-radius: 50px;
   --solar-radius: 100px;
-
   /* 自转周期 */
   --solar-cycle: 10s;
   --earth-cycle: 5s;
   --lunar-cycle: 2s;
-
   /* 公转周期 */
   --earth-orbit-cycle: 10s;
   --lunar-orbit-cycle: 5s;
+
+  /* 视图旋转角度 */
+  --view-3d-rotate: 50deg;
+  --view-side-rotate: 90deg;
+}
+
+.earth_orbit_reverse {
+  animation: orbit var(--earth-orbit-cycle) linear infinite reverse;
 }
 
 .solar-system {
@@ -45,7 +52,9 @@
   height: var(--earth-radius);
   overflow: hidden;
   border-radius: 50%;
-    transform: rotate(100deg);
+
+  /* 沿着轨道反向旋转 */
+  animation: orbit var(--earth-orbit-cycle) linear infinite reverse;
 }
 
 .lunar {
@@ -58,6 +67,9 @@
   height: var(--lunar-radius);
   border-radius: 50%;
   overflow: hidden;
+
+  /* 沿着轨道反向旋转，月球旋转速度同时叠加了月球轨道和地球轨道 */
+  animation: orbit var(--lunar-orbit-cycle) linear infinite reverse;
 }
 
 /* 自转贴图 */
@@ -108,6 +120,8 @@ img{
   width: var(--lunar-orbit-radius);
   height: var(--lunar-orbit-radius);
 
+  /* 直接让轨道进行旋转 */
+  animation: orbit var(--lunar-orbit-cycle) linear infinite;
 }
 
 
@@ -121,10 +135,10 @@ img{
   border-radius: 50%;
   width: var(--earth-orbit-radius);
   height: var(--earth-orbit-radius);
-  background-color: purple;
-
+  /* background-color: purple; */
+  
   /* 直接让轨道进行旋转 */
-  animation: orbit 10s linear infinite;
+  animation: orbit var(--earth-orbit-cycle) linear infinite;
 }
 @keyframes orbit {
   0%{
@@ -137,7 +151,7 @@ img{
 
 /* 在.view_3d 的时候，让地球立起来 */
 .view_3d .earth{
-  transform: rotateX(-50deg);
+  transform: rotateX(calc(-1 * var(--view-3d-rotate)));
 }
 
 .shadow {
@@ -150,13 +164,24 @@ img{
   background-color: black;
 }
 
-
-.view_2d {
+.view_top {
   transform-style: flat;
+}
+.view_side {
+  transform-style: preserve-3d;
+  transform: rotateX(80deg);
 }
 .view_3d {
   transform-style: preserve-3d;
-  transform: rotateX(50deg);
+  transform: rotateX(var(--view-3d-rotate));
+}
+
+/* 在view_3d情况下，让所有的图像树立起来 */
+.view_3d .solar {
+  transform: rotateX(calc(-1 * var(--view-3d-rotate)));
+}
+.view_3d .bet_earth {
+  transform: rotateX(-50deg);
 }
 
 /* 日食月食处理 */
