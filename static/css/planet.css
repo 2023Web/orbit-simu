@@ -76,13 +76,3 @@ img{
   margin: 0 auto;
 
 }
-
-.shadow {
-  position: absolute;
-  top: 200px;
-  left: 525px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: black;
-}
