@@ -14,13 +14,17 @@ function view_changed() {
   var view = $('input[name="view"]:checked').val();
   console.log('view_changed: ' + view);
   if (view == 'top') {
-    // TODO: 俯视图
-    $(".solar-system").toggleClass("view_3d view_2d");
+    // 俯视图
+    $(".solar-system").removeClass("view_side view_3d");
+    $(".solar-system").addClass("view_top");
   } else if (view == 'side') {
-    // TODO: 侧视图
+    // 侧视图
+    $(".solar-system").removeClass("view_top view_3d");
+    $(".solar-system").addClass("view_side");
   } else if (view == '3d') {
-    // TODO: 3d视图
-    $(".solar-system").toggleClass("view_3d view_2d");
+    // 3d视图
+    $(".solar-system").removeClass("view_top view_side");
+    $(".solar-system").addClass("view_3d");
   }
 }
 

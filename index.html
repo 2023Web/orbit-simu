@@ -11,24 +11,29 @@
 
 <body class="container">
   <div class="con_box_1">
-    <div class="solar-system view_3d">
+    <div class="solar-system view_top">
       <!-- 绘制地球公转轨道 -->
       <div class="earth_orbit">
         <div class="earth">
           <!-- 绘制地球 -->
-          <div class="imgList">
-            <img src="static/img/earth_2K.jpg" name="earth_texture" />
-            <img src="static/img/earth_2K.jpg" name="earth_texture" />
-          </div>
-          <div id="shadows"></div><!--阴影-->
-        </div>
-        <!-- 绘制月球公转轨道 -->
-        <div class="lunar_orbit">
-          <div class="lunar">
-            <!-- 绘制月球 -->
+          <div class="bet_earth">
             <div class="imgList">
-              <img src="static/img/lunar.jpg" name="lunar_texture" />
-              <img src="static/img/lunar.jpg" name="lunar_texture" />
+              <img src="static/img/earth_2K.jpg" name="earth_texture" />
+              <img src="static/img/earth_2K.jpg" name="earth_texture" />
+            </div>
+          </div>
+          <!--阴影-->
+          <!-- <div id="shadows"></div> -->
+        </div>
+        <div class="earth_orbit_reverse">
+          <!-- 绘制月球公转轨道 -->
+          <div class="lunar_orbit">
+            <div class="lunar">
+              <!-- 绘制月球 -->
+              <div class="imgList">
+                <img src="static/img/lunar.jpg" name="lunar_texture" />
+                <img src="static/img/lunar.jpg" name="lunar_texture" />
+              </div>
             </div>
           </div>
         </div>
@@ -47,11 +52,11 @@
       <div class="view_block">
         <p class="info_label">视图选择</p>
         <div class="view">
-          <input type="radio" name="view" id="view_top" value="top">
+          <input type="radio" name="view" id="view_top" value="top" checked>
           <label for="view_top">俯视图</label>
           <input type="radio" name="view" id="view_side" value="side">
           <label for="view_side">侧视图</label>
-          <input type="radio" name="view" id="view_3d" value="3d" checked>
+          <input type="radio" name="view" id="view_3d" value="3d">
           <label for="view_3d">3D视图</label>
         </div>
       </div>
