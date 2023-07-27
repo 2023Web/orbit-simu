@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="static/css/planet.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="static/js/jquery_min.js"></script>
-    <script src="static/js/panel.js"></script>
-    <script src="static/js/planet.js"></script>
-  </head>
-  <body class="container">
-    <div class="con_box_1">
-      <div class="solar-system">
 
-        <!-- 绘制地球公转轨道 -->
-        <div class="earth_orbit"></div>
+<head>
+  <link rel="stylesheet" href="static/css/planet.css">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="static/js/jquery_min.js"></script>
+  <script src="static/js/panel.js"></script>
+  <script src="static/js/planet.js"></script>
+</head>
 
-        <div class="solar">
-          <!-- 绘制太阳 -->
-          <div class="imgList">
-            <img src="static/img/sun.jpg" />
-          </div>
+<body class="container">
+  <div class="con_box_1">
+    <div class="solar-system">
+
+      <!-- 绘制地球公转轨道 -->
+      <div class="earth_orbit"></div>
+
+      <div class="solar">
+        <!-- 绘制太阳 -->
+        <div class="imgList">
+          <img src="static/img/sun.jpg" />
         </div>
-        <div class="earth">
-          <!-- 绘制地球 -->
-          <div class="imgList">
-            <img src="static/img/earth_2K.jpg" name="earth_texture" />
-            <img src="static/img/earth_2K.jpg" name="earth_texture"/ >
-          </div>    <!--实现自转-->
-          <div id="shadows"></div><!--阴影-->
+      </div>
+      <div class="earth">
+        <!-- 绘制地球 -->
+        <div class="imgList">
+          <img src="static/img/earth_2K.jpg" name="earth_texture" />
+          <img src="static/img/earth_2K.jpg" name="earth_texture" />
+        </div> <!--实现自转-->
+        <div id="shadows"></div><!--阴影-->
 
+      </div>
+
+      <!-- 绘制月球公转轨道 -->
+      <div class="lunar_orbit"></div>
+      <div id="lunar">
+        <!-- 绘制月球 -->
+        <div class="planet">
+          <div class="texture"></div>
         </div>
 
-        <!-- 绘制月球公转轨道 -->
-         <div class="lunar_orbit"></div>        
-        <div id="lunar">
-          <!-- 绘制月球 -->
-          <div class="planet">
-            <div class="texture"></div>
-          </div>
-          
       </div>
     </div>
     <div class="con_box_2">
@@ -65,25 +67,25 @@
       </div>
     </div>
     <div class="con_box_3">
-      <!-- 显示日食月食画中画，注意要同时显示自转中的太阳和月球 -->
       <div class="pip">
-        <!-- TODO: 日食画中画 -->
-        <p>日食</p>
-        <div class="solar" style="top: 0;">
+        <!-- 日食画中画 -->
+        <div class="solar">
           <div class="imgList">
-            <img src="static/img/sun.jpg" />
+            <img src="static/img/sun.jpg">
           </div>
         </div>
+        <div class="shadow" style="opacity: <%= 1 - eclipse_rate %>;"></div>
       </div>
       <div class="pip">
-        <!-- TODO：月食画中画 -->
-        <p>月食</p>
-        <div class="lunar" style="top: 0;">
+        <!-- 月食画中画 -->
+        <div class="lunar">
           <div class="imgList">
-            <img src="static/img/lunar.jpg" />
+            <img src="static/img/moon.jpg">
           </div>
         </div>
+        <div class="shadow" style="opacity: <%= 1 - eclipse_rate %>;"></div>
       </div>
     </div>
-  </body>
+</body>
+
 </html>
