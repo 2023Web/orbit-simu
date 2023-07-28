@@ -34,7 +34,7 @@ function view_changed() {
     type: 'GET',
     dataType: 'json',
     success: function(data) {
-      return; 
+      // return; 
       let earth_info = data.data;
       // 设置:root元素内部参数
       let radius = earth_info.radius*100;
@@ -63,7 +63,7 @@ function view_changed() {
     type: 'GET',
     dataType: 'json',
     success: function(data) {
-      return; 
+      // return; 
       let lunar_info = data.data;
       // 设置:root元素内部参数
       let radius = lunar_info.radius*100;
@@ -92,7 +92,7 @@ function view_changed() {
     type: 'GET',
     dataType: 'json',
     success: function(data) {
-      return; 
+      // return; 
       let solar_info = data.data;
       // 设置:root元素内部参数
       let radius = solar_info.radius*100;
