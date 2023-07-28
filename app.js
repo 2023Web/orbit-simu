@@ -41,7 +41,59 @@ app.get(
   }
 );
 
-// /api/eclipse/:id
+// 计算太阳日食的eclipse_rate
+function calculateSolarEclipseRate(earth, solar, lunar) {
+  let solar_radius = solar.radius; // 太阳半径
+  let earth_radius = earth.radius; // 地球半径
+  let lunar_radius = lunar.radius; // 月球半径
+
+  let earth_orbit_radius = earth.orbit_radius; // 地球公转半径
+  let earth_angle = earth.angle; // 地球自转角度
+  let earth_orbit_angle = earth.orbit_angle; // 地球公转角度
+
+  let eclipse_angle = Math.abs(earth_orbit_angle - earth_angle);
+  let solar_eclipse_radius = solar_radius - earth_orbit_radius;
+  let shadow_length = Math.sqrt(
+    solar_eclipse_radius ** 2 +
+      earth_radius ** 2 -
+      2 * solar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
+  );
+
+  let eclipse_rate_solar = 0;
+  if (shadow_length <= lunar_radius) {
+    eclipse_rate_solar = 1;
+  } else if (shadow_length < solar_radius + lunar_radius) {
+    eclipse_rate_solar = 1 - (shadow_length - lunar_radius) / solar_radius;
+  }
+  return eclipse_rate_solar;
+}
+
+// 计算月食的eclipse_rate
+function calculateLunarEclipseRate(earth, lunar) {
+  let earth_radius = earth.radius; // 地球半径
+  let lunar_radius = lunar.radius; // 月球半径
+
+  let earth_orbit_radius = earth.orbit_radius; // 地球公转半径
+  let earth_orbit_angle = earth.orbit_angle; // 地球公转角度
+  let lunar_orbit_angle = lunar.orbit_angle; // 月球公转角度
+
+  let eclipse_angle = Math.abs(lunar_orbit_angle - earth_orbit_angle);
+  let lunar_eclipse_radius = lunar_radius - earth_orbit_radius;
+  let shadow_length = Math.sqrt(
+    lunar_eclipse_radius ** 2 +
+      earth_radius ** 2 -
+      2 * lunar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
+  );
+
+  let eclipse_rate_lunar = 0;
+  if (shadow_length <= lunar_radius) {
+    eclipse_rate_lunar = 1;
+  } else if (shadow_length < lunar_radius + lunar_radius) {
+    eclipse_rate_lunar = 1 - (shadow_length - lunar_radius) / lunar_radius;
+  }
+  return eclipse_rate_lunar;
+}
+
 app.get(
   "/api/eclipse/:id",
   function (req, res, next) {
@@ -61,63 +113,14 @@ app.get(
       let earth = planet_hdl["earth"].get_planet();
       let lunar = planet_hdl["lunar"].get_planet();
 
-      let solar_radius = solar.radius; // 太阳半径
-      let earth_radius = earth.radius; // 地球半径
-      let lunar_radius = lunar.radius; // 月球半径
-
-      let earth_orbit_radius = earth.orbit_radius; // 地球公转半径
-      let lunar_orbit_radius = lunar.orbit_radius; // 月球公转半径
-
-      let earth_angle = earth.angle; // 地球自转角度
-      let earth_orbit_angle = earth.orbit_angle; // 地球公转角度
-      let lunar_orbit_angle = lunar.orbit_angle; // 月球公转角度
-
-      // 计算日食月食程度（eccipse_rate）
-      let eclipse_rate_lunar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
-      let eclipse_rate_solar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
       let eclipse_rate = 0;
-      if (planet == "solar") {
-        let eclipse_angle = Math.abs(earth_orbit_angle - earth_angle);
-        let solar_eclipse_radius = solar_radius - earth_orbit_radius;
-        let shadow_length = Math.sqrt(
-          solar_eclipse_radius ** 2 +
-            earth_radius ** 2 -
-            2 * solar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
-        );
-
-        console.log(shadow_length, solar_eclipse_radius, shadow_length);
-
-        if (shadow_length <= lunar_radius) {
-          eclipse_rate_solar = 1;
-        } else if (shadow_length < solar_radius + lunar_radius) {
-          eclipse_rate_solar =
-            1 - (shadow_length - lunar_radius) / solar_radius;
-        } else {
-          eclipse_rate_solar = 0;
-        }
-        eclipse_rate = eclipse_rate_solar;
+      if (planet === "solar") {
+        eclipse_rate = calculateSolarEclipseRate(earth, solar, lunar);
       } else {
-        // 判断月食程度
-        let eclipse_angle = Math.abs(lunar_orbit_angle - earth_orbit_angle);
-        let lunar_eclipse_radius = lunar_radius - lunar_orbit_radius;
-        let shadow_length = Math.sqrt(
-          lunar_eclipse_radius ** 2 +
-            earth_radius ** 2 -
-            2 * lunar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
-        );
-
-        if (shadow_length <= solar_radius) {
-          eclipse_rate_lunar = 1;
-        } else if (shadow_length < solar_radius + lunar_radius) {
-          eclipse_rate_lunar =
-            1 - (shadow_length - solar_radius) / lunar_radius;
-        } else {
-          eclipse_rate_lunar = 0;
-        }
-        eclipse_rate = eclipse_rate_lunar;
+        eclipse_rate = calculateLunarEclipseRate(earth, lunar);
       }
 
-      res.json_send({
+      res.json({
         eclipse_rate: eclipse_rate,
       });
     }
@@ -125,11 +128,14 @@ app.get(
     // Initial calculation on request
     calculateEclipseRate();
 
-    // Set an interval to update the eclipse rate every 100ms
+    // Set an interval to update the eclipse rate every 100ms for solar
     if (req.params.id === "solar") {
       let intervalId = setInterval(() => {
-        calculateEclipseRate();
-      }, 10);
+        calculateEclipseRate().then((data) => {
+          const eclipseRate = data.eclipse_rate;
+          updateAnimationDuration(eclipseRate, "solar");
+        });
+      }, 100);
 
       res.on("finish", () => {
         clearInterval(intervalId);
