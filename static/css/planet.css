@@ -25,7 +25,7 @@
   --view-side-rotate: 90deg;
 
   
-  --orbit-compress-coef: 0.3;
+  --orbit-compress-coef: 0;
 }
 
 .earth_orbit_reverse {
@@ -61,6 +61,7 @@
   height: var(--earth-radius);
   overflow: hidden;
   border-radius: 50%;
+  z-index: 1;
 
   /* 沿着轨道反向旋转 */
   animation: orbit var(--earth-orbit-cycle) linear infinite reverse;
