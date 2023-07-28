@@ -8,7 +8,7 @@ $(document).ready(function() {
       fetch('/api/eclipse/solar')
         .then(response => response.json())
         .then(data => {
-          const solarEclipseRate = data.data.eclipse_rate_solar;
+          const solarEclipseRate = data.data.eclipse_rate;
           // 设置CSS动画持续时间
           const solarAnimationDuration = `${solarEclipseRate * 5}s`; 
           document.documentElement.style.setProperty('--animation-duration-solar', solarAnimationDuration);
@@ -24,7 +24,7 @@ $(document).ready(function() {
       fetch('/api/eclipse/lunar')
         .then(response => response.json())
         .then(data => {
-          const lunarEclipseRate = data.data.eclipse_rate_lunar;
+          const lunarEclipseRate = data.data.eclipse_rate;
 
           // 设置CSS动画持续时间
           const lunarAnimationDuration = `${lunarEclipseRate * 5}s`; 

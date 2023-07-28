@@ -67,6 +67,7 @@ app.get('/api/eclipse/:id', function(req, res, next) {
     // 计算日食月食程度（eccipse_rate）
     let eclipse_rate_lunar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
     let eclipse_rate_solar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
+    let eclipse_rate = 0;
     if (planet == "solar") {
       let eclipse_angle = Math.abs(earth_orbit_angle - earth_angle);
       let solar_eclipse_radius = solar_radius - earth_orbit_radius;
@@ -81,6 +82,7 @@ app.get('/api/eclipse/:id', function(req, res, next) {
       } else {
         eclipse_rate_solar = 0;
       }
+      eclipse_rate = eclipse_rate_solar;
     } else {
       // 判断月食程度
       let eclipse_angle = Math.abs(lunar_orbit_angle - earth_orbit_angle);
@@ -94,10 +96,11 @@ app.get('/api/eclipse/:id', function(req, res, next) {
       } else {
         eclipse_rate_lunar = 0;
       }
+      eclipse_rate = eclipse_rate_lunar;
     }
     
     res.json_send({
-      eclipse_rate_lunar: eclipse_rate_lunar, eclipse_rate_solar: eclipse_rate_solar
+      eclipse_rate: eclipse_rate,
     });
   }
 
