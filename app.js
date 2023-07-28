@@ -43,23 +43,23 @@ app.get(
 
 // 计算太阳日食的eclipse_rate
 function calculateSolarEclipseRate(earth, solar, lunar) {
-  let solar_radius = solar.radius; // 太阳半径
-  let earth_radius = earth.radius; // 地球半径
-  let lunar_radius = lunar.radius; // 月球半径
+  let solar_radius = 1; // 太阳半径
+  let earth_radius = 0.8; // 地球半径
+  let lunar_radius = 0.5; // 月球半径
 
-  let earth_orbit_radius = earth.orbit_radius; // 地球公转半径
-  let earth_angle = earth.angle; // 地球自转角度
-  let earth_orbit_angle = earth.orbit_angle; // 地球公转角度
+  let earth_orbit_radius = 6; // 地球公转半径
+  let earth_angle = 0; // 地球自转角度
+  let earth_orbit_angle = 0; // 地球公转角度
 
   let eclipse_angle = Math.abs(earth_orbit_angle - earth_angle);
   let solar_eclipse_radius = solar_radius - earth_orbit_radius;
   let shadow_length = Math.sqrt(
     solar_eclipse_radius ** 2 +
       earth_radius ** 2 -
-      2 * solar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
+      2 * solar_eclipse_radius * earth_radius
   );
 
-  let eclipse_rate_solar = 0;
+  let eclipse_rate_solar = 1;
   if (shadow_length <= lunar_radius) {
     eclipse_rate_solar = 1;
   } else if (shadow_length < solar_radius + lunar_radius) {
@@ -70,19 +70,19 @@ function calculateSolarEclipseRate(earth, solar, lunar) {
 
 // 计算月食的eclipse_rate
 function calculateLunarEclipseRate(earth, lunar) {
-  let earth_radius = earth.radius; // 地球半径
-  let lunar_radius = lunar.radius; // 月球半径
+  let earth_radius = 0.8; // 地球半径
+  let lunar_radius = 0.5; // 月球半径
 
-  let earth_orbit_radius = earth.orbit_radius; // 地球公转半径
-  let earth_orbit_angle = earth.orbit_angle; // 地球公转角度
-  let lunar_orbit_angle = lunar.orbit_angle; // 月球公转角度
+  let earth_orbit_radius = 6; // 地球公转半径
+  let earth_orbit_angle = 0; // 地球公转角度
+  let lunar_orbit_angle = 0; // 月球公转角度
 
   let eclipse_angle = Math.abs(lunar_orbit_angle - earth_orbit_angle);
   let lunar_eclipse_radius = lunar_radius - earth_orbit_radius;
   let shadow_length = Math.sqrt(
     lunar_eclipse_radius ** 2 +
       earth_radius ** 2 -
-      2 * lunar_eclipse_radius * earth_radius * Math.cos(eclipse_angle)
+      2 * lunar_eclipse_radius * earth_radius
   );
 
   let eclipse_rate_lunar = 0;
