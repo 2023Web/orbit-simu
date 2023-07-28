@@ -72,6 +72,8 @@ app.get('/api/eclipse/:id', function(req, res, next) {
       let solar_eclipse_radius = solar_radius - earth_orbit_radius;
       let shadow_length = Math.sqrt(solar_eclipse_radius ** 2 + earth_radius ** 2 - 2 * solar_eclipse_radius * earth_radius * Math.cos(eclipse_angle));
 
+      console.log(shadow_length, solar_eclipse_radius, shadow_length);
+
       if (shadow_length <= lunar_radius) {
         eclipse_rate_solar = 1;
       } else if (shadow_length < solar_radius + lunar_radius) {

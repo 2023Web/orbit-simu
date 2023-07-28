@@ -1,7 +1,7 @@
 :root {
   /* 公转半径 */
   --lunar-orbit-radius: 200px;
-  --earth-orbit-radius: 300px;
+  --earth-orbit-radius: 600px;
   /* 星体半径 */
   --earth-radius: 80px;
   --lunar-radius: 50px;
@@ -13,6 +13,12 @@
   /* 公转周期 */
   --earth-orbit-cycle: 10s;
   --lunar-orbit-cycle: 5s;
+  /* 起始旋转角 */
+  --solar-angle: 0deg;
+  --earth-angle: 0deg;
+  --lunar-angle: 0deg;
+  --earth-orbit-angle: 0deg;
+  --lunar-orbit-angle: 0deg;
 
   /* 视图旋转角度 */
   --view-3d-rotate: 50deg;
@@ -144,6 +150,22 @@ img{
   
   /* 直接让轨道进行旋转 */
   animation: orbit var(--earth-orbit-cycle) linear infinite;
+}
+@keyframes orbit_earth {
+  0%{
+    transform: rotateZ(calc(0deg - var(--earth-orbit-angle)));
+  }
+  100%{
+    transform: rotateZ(calc(-360deg - var(--earth-orbit-angle)));
+  }
+}
+@keyframes orbit_lunar {
+  0%{
+    transform: rotateZ(calc(0deg - var(--lunar-orbit-angle)));
+  }
+  100%{
+    transform: rotateZ(calc(-360deg - var(--lunar-orbit-angle)));
+  }
 }
 @keyframes orbit {
   0%{

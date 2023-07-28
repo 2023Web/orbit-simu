@@ -18,20 +18,58 @@ class Planet {
   }
   get_planet() {
     let time_pass = new Date().getTime() - this.init_time;
+    let res_angle = this.angle + this.speed * this.time_coef * this.clockwise * time_pass;
+    let res_orbit_angle = this.orbit_angle + this.orbit_speed * this.time_coef * this.orbit_clockwise * time_pass;
+    res_angle = res_angle - Math.floor(res_angle / 360) * 360;
+    res_orbit_angle = res_orbit_angle - Math.floor(res_orbit_angle / 360) * 360;
     return {
       radius: this.radius,
-      angle: this.angle + this.speed * this.time_coef * this.clockwise * time_pass,
+      angle: res_angle,
       orbit_radius: this.orbit_radius,
-      orbit_angle: this.orbit_angle + this.orbit_speed * this.time_coef * this.orbit_clockwise * time_pass,
+      orbit_angle: res_orbit_angle,
+      cycle: 360 / this.speed * this.time_coef,
+      orbit_cycle: 360 / this.orbit_speed * this.time_coef,
     };
   }
 }
 
-// FIXME: 部分参数可能有误，请检查
+// FIXME: 为了方便演示，采用的参数并真实值
+// var planet_coef = {
+//   solar: {
+//     radius: 0.0046491, // AU  695500 km = 0.0046491 AU
+//     speed: 0.0001126, // degree/s   360 degree / 2194560 s 
+//     angle: 0,
+//     clockwise: 1,
+//     orbit_radius: 0, // 太阳可以视为固定在原点
+//     orbit_speed: 0,
+//     orbit_angle: 0,
+//     orbit_clockwise: 1,
+//   },
+//   earth: {
+//     radius: 0.000042587, // AU   6371 km = 0.000042587 AU
+//     speed: 0.0041781, // degree/s
+//     angle: 0,
+//     clockwise: 1, // 北极上空俯视呈逆时针方向旋转
+//     orbit_radius: 1, // AU
+//     orbit_speed: 0.986, // degree/day  360 degree / 365 day = 0.986
+//     orbit_angle: 0,
+//     orbit_clockwise: 1,
+//   },
+//   lunar: {
+//     radius: 0.000011611, // AU   1737.1 km = 0.000011611 AU
+//     speed: 0.0001525, // degree/s   360 degree / 2360591 s = 0.00015250418
+//     angle: 0,
+//     clockwise: 1, // 北极上空俯视呈逆时针方向旋转
+//     orbit_radius: 0.00226, // AU    384403 km = 0.002262084336 AU
+//     orbit_speed: 13.177159, // degree/day  360 degree / 27.32 day = 13.177159
+//     orbit_angle: 0,
+//     orbit_clockwise: 1,
+//   },
+// };
 var planet_coef = {
   solar: {
-    radius: 0.0046491, // AU  695500 km = 0.0046491 AU
-    speed: 0.0001126, // degree/s   360 degree / 2194560 s 
+    radius: 1, // 1 for 100px
+    speed: 360/10, // deg/s
     angle: 0,
     clockwise: 1,
     orbit_radius: 0, // 太阳可以视为固定在原点
@@ -40,28 +78,29 @@ var planet_coef = {
     orbit_clockwise: 1,
   },
   earth: {
-    radius: 0.000042587, // AU   6371 km = 0.000042587 AU
-    speed: 0.0041781, // degree/s
+    radius: 0.8,
+    speed: 360/5, // deg/s
     angle: 0,
-    clockwise: 1, // 北极上空俯视呈逆时针方向旋转
-    orbit_radius: 1, // AU
-    orbit_speed: 0.986, // degree/day  360 degree / 365 day = 0.986
+    clockwise: 1,
+    orbit_radius: 6, // 1 for 100px
+    orbit_speed: 360/10, // deg/s
     orbit_angle: 0,
     orbit_clockwise: 1,
   },
   lunar: {
-    radius: 0.000011611, // AU   1737.1 km = 0.000011611 AU
-    speed: 0.0001525, // degree/s   360 degree / 2360591 s = 0.00015250418
+    radius: 0.5,
+    speed: 360/2, // deg/s
     angle: 0,
-    clockwise: 1, // 北极上空俯视呈逆时针方向旋转
-    orbit_radius: 0.00226, // AU    384403 km = 0.002262084336 AU
-    orbit_speed: 13.177159, // degree/day  360 degree / 27.32 day = 13.177159
+    clockwise: 1,
+    orbit_radius: 2, // 1 for 100px
+    orbit_speed: 360/5, // deg/s
     orbit_angle: 0,
     orbit_clockwise: 1,
   },
 };
 
-var time_coef = 1 / 864000; // 1s = 10day   1  /  864000
+// var time_coef = 1 / 864000; // 1s = 10day   1  /  864000
+var time_coef = 1;
 
 module.exports = {
   solar: new Planet(
