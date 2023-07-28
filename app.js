@@ -65,18 +65,19 @@ app.get('/api/eclipse/:id', function(req, res, next) {
     let lunar_orbit_angle = lunar.orbit_angle; // 月球公转角度
 
     // 计算日食月食程度（eccipse_rate）
-    let eclipse_rate = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
+    let eclipse_rate_lunar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
+    let eclipse_rate_solar = 0; // 0~1: 0表示没发生eclipse，1表示完全eclipse
     if (planet == "solar") {
       let eclipse_angle = Math.abs(earth_orbit_angle - earth_angle);
       let solar_eclipse_radius = solar_radius - earth_orbit_radius;
       let shadow_length = Math.sqrt(solar_eclipse_radius ** 2 + earth_radius ** 2 - 2 * solar_eclipse_radius * earth_radius * Math.cos(eclipse_angle));
 
       if (shadow_length <= lunar_radius) {
-        eclipse_rate = 1;
+        eclipse_rate_solar = 1;
       } else if (shadow_length < solar_radius + lunar_radius) {
-        eclipse_rate = 1 - (shadow_length - lunar_radius) / (solar_radius);
+        eclipse_rate_solar = 1 - (shadow_length - lunar_radius) / (solar_radius);
       } else {
-        eclipse_rate = 0;
+        eclipse_rate_solar = 0;
       }
     } else {
       // 判断月食程度
@@ -85,16 +86,16 @@ app.get('/api/eclipse/:id', function(req, res, next) {
       let shadow_length = Math.sqrt(lunar_eclipse_radius ** 2 + earth_radius ** 2 - 2 * lunar_eclipse_radius * earth_radius * Math.cos(eclipse_angle));
   
       if (shadow_length <= solar_radius) {
-        eclipse_rate = 1;
+        eclipse_rate_lunar = 1;
       } else if (shadow_length < solar_radius + lunar_radius) {
-        eclipse_rate = 1 - (shadow_length - solar_radius) / (lunar_radius);
+        eclipse_rate_lunar = 1 - (shadow_length - solar_radius) / (lunar_radius);
       } else {
-        eclipse_rate = 0;
+        eclipse_rate_lunar = 0;
       }
     }
     
     res.json_send({
-      eclipse_rate: eclipse_rate,
+      eclipse_rate_lunar: eclipse_rate_lunar, eclipse_rate_solar: eclipse_rate_solar
     });
   }
 
@@ -105,7 +106,7 @@ app.get('/api/eclipse/:id', function(req, res, next) {
   if (req.params.id === "solar") {
     let intervalId = setInterval(() => {
       calculateEclipseRate();
-    }, 100);
+    }, 10);
 
     res.on('finish', () => {
       clearInterval(intervalId);

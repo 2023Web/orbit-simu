@@ -13,12 +13,20 @@
   margin: auto;
 }
 
-.eclipse-after {
-  animation: eclipse var(--animation-duration) linear infinite;
+.eclipse-after-solar {
+  animation: eclipse var(--animation-duration-solar) linear infinite;
 }
 
-.eclipse-before {
-  animation: shadow var(--animation-duration) linear infinite;
+.eclipse-before-solar {
+  animation: shadow var(--animation-duration-solar) linear infinite;
+}
+
+.eclipse-after-lunar {
+  animation: eclipse var(--animation-duration-lunar) linear infinite;
+}
+
+.eclipse-before-lunar {
+  animation: shadow var(--animation-duration-lunar) linear infinite;
 }
 
 

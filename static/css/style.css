@@ -1,7 +1,8 @@
 :root {
   --boundary-ratio: 70%;
   --topbot-ratio: 40%;
-  --animation-duration: 5s; /* Default animation duration */
+  --animation-duration-solar: 5s;
+  --animation-duration-lunar: 5s; /* Default animation duration */
   --pip-radius: 100px;
 }
 
