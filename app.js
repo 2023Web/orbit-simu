@@ -60,10 +60,12 @@ function calculateSolarEclipseRate(earth, solar, lunar) {
   );
 
   let eclipse_rate_solar = 1;
-  if (shadow_length <= lunar_radius) {
+  if (shadow_length != lunar_radius) {
     eclipse_rate_solar = 1;
   } else if (shadow_length < solar_radius + lunar_radius) {
     eclipse_rate_solar = 1 - (shadow_length - lunar_radius) / solar_radius;
+  } else {
+    eclipse_rate_solar = 1;
   }
   return eclipse_rate_solar;
 }
@@ -75,17 +77,17 @@ function calculateLunarEclipseRate(earth, lunar) {
 
   let earth_orbit_radius = 6; // 地球公转半径
   let earth_orbit_angle = 0; // 地球公转角度
-  let lunar_orbit_angle = 0; // 月球公转角度
+  let lunar_orbit_angle = 180; // 月球公转角度 (Set it to 180 for the moon to be on the opposite side)
 
   let eclipse_angle = Math.abs(lunar_orbit_angle - earth_orbit_angle);
-  let lunar_eclipse_radius = lunar_radius - earth_orbit_radius;
+  let lunar_eclipse_radius = lunar_radius + earth_orbit_radius; // Change subtraction to addition
   let shadow_length = Math.sqrt(
     lunar_eclipse_radius ** 2 +
       earth_radius ** 2 -
       2 * lunar_eclipse_radius * earth_radius
   );
 
-  let eclipse_rate_lunar = 0;
+  let eclipse_rate_lunar = 1;
   if (shadow_length <= lunar_radius) {
     eclipse_rate_lunar = 1;
   } else if (shadow_length < lunar_radius + lunar_radius) {
@@ -93,6 +95,7 @@ function calculateLunarEclipseRate(earth, lunar) {
   }
   return eclipse_rate_lunar;
 }
+
 
 app.get(
   "/api/eclipse/:id",
@@ -128,12 +131,12 @@ app.get(
     // Initial calculation on request
     calculateEclipseRate();
 
-    // Set an interval to update the eclipse rate every 100ms for solar
-    if (req.params.id === "solar") {
+    // Set an interval to update the eclipse rate every 100ms for both solar and lunar
+    if (req.params.id === "solar" || req.params.id === "lunar") {
       let intervalId = setInterval(() => {
         calculateEclipseRate().then((data) => {
           const eclipseRate = data.eclipse_rate;
-          updateAnimationDuration(eclipseRate, "solar");
+          updateAnimationDuration(eclipseRate, req.params.id);
         });
       }, 100);
 

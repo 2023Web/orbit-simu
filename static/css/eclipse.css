@@ -21,11 +21,11 @@
 }
 
 .eclipse-after-lunar {
-  animation: eclipse var(--animation-duration-lunar) linear infinite;
+  animation: eclipse-lunar calc(var(--animation-duration-lunar) * 2) linear infinite;
 }
 
 .eclipse-before-lunar {
-  animation: shadow var(--animation-duration-lunar) linear infinite;
+  animation: shadow calc(var(--animation-duration-lunar) * 2) linear infinite;
 }
 
 
@@ -34,10 +34,48 @@
     left: 300px;
   }
 
-  45%,
-  60% {
+  35%,
+  40% {
     left: 0;
     background: #000;
+    opacity: 90%;
+  }
+
+  50% {
+    opacity: 10%;
+  }
+
+  60% {
+    opacity: 0%;
+  }
+
+  100% {
+    left: -300px;
+  }
+}
+
+@keyframes eclipse-lunar {
+  0% {
+    left: 300px;
+  }
+
+  45% {
+    opacity: 10%;
+  }
+
+  49%,
+  50% {
+    left: 0;
+    background: #000;
+    opacity: 90%;
+  }
+
+  55% {
+    opacity: 10%;
+  }
+
+  60% {
+    opacity: 1%;
   }
 
   100% {
