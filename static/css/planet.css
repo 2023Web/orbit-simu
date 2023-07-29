@@ -62,7 +62,6 @@
   overflow: hidden;
   border-radius: 50%;
   z-index: 1;
-
   /* 沿着轨道反向旋转 */
   animation: orbit var(--earth-orbit-cycle) linear infinite reverse;
 }
